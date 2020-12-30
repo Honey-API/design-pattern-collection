@@ -1,0 +1,40 @@
+@startuml
+
+class Singleton {
+    - static Singleton* _instance
+    # Singleton()
+    # ~Singleton()
+    + Singleton(Singleton &other) = delete;
+    + operator=(const Singleton &) = delete;
+    + static Singleton* getInstance()
+    + static killInstance()
+}
+
+
+
+note left of Singleton::"Singleton(Singleton &other)"
+    is not be clonable
+end note
+
+note left of Singleton::"operator=(const Singleton &)"
+    is not be assignable
+end note
+
+note left of Singleton::"getInstance()"
+    instanciate _instance
+    return _instance
+end note
+
+note left of Singleton::"killInstance()"
+    delete _instance
+end note
+
+note as N1 
+    In C++ remember a singleton is a global variable.
+    
+    Singleton* Singleton::_instance = nullptr;
+    
+end note
+
+
+@enduml
